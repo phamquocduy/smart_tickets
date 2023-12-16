@@ -7,10 +7,11 @@ import TinyEditor, { TinyEditorMethods } from "./TinyEditor";
 interface FormProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setElements: (elements: any) => void;
-  onExportClick: () => void;
+  onExportHTMLClick: () => void;
+  onExportToImageClick: () => void;
 }
 
-export default function Form({ setElements, onExportClick }: FormProps) {
+export default function Form({ setElements, onExportHTMLClick, onExportToImageClick }: FormProps) {
   const nameRef = useRef<TinyEditorMethods>(null);
   const nameXRef = useRef();
   const nameYRef = useRef();
@@ -31,9 +32,6 @@ export default function Form({ setElements, onExportClick }: FormProps) {
     const companyX = companyXRef.current?.value;
     // @ts-ignore
     const companyY = companyYRef.current?.value;
-
-    console.log(name);
-    console.log(company);
 
     setElements([
       {
@@ -180,13 +178,23 @@ export default function Form({ setElements, onExportClick }: FormProps) {
           Apply to image
         </button>
 
-        <button
-          type="button"
-          className="px-3 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-          onClick={onExportClick}
-        >
-          Export image
-        </button>
+        <div className="flex gap-4">
+          <button
+            type="button"
+            className="px-3 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            onClick={onExportHTMLClick}
+          >
+            Export HTML
+          </button>
+
+          <button
+            type="button"
+            className="px-3 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            onClick={onExportToImageClick}
+          >
+            Export to PNG image
+          </button>
+        </div>
       </div>
     </div>
   );

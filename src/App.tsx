@@ -23,6 +23,13 @@ export default function Example() {
       });
   };
 
+  const handleGetHTMLContent = () => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const html = document.getElementById("canvas-container").outerHTML;
+    console.log(html);
+  };
+
   return (
     <main>
       <div className="px-8 py-6 mx-auto max-w-[100rem] grid grid-cols-2 gap-x-8">
@@ -32,7 +39,11 @@ export default function Example() {
         </div>
 
         <div className="col-span-1 bg-white shadow-sm ring-1 ring-gray-900/5">
-          <Form setElements={setElements} onExportClick={handleConvertToImage} />
+          <Form
+            setElements={setElements}
+            onExportHTMLClick={handleGetHTMLContent}
+            onExportToImageClick={handleConvertToImage}
+          />
         </div>
       </div>
     </main>
